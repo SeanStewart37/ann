@@ -1,0 +1,151 @@
+{
+	"id": "999d4e42-59a0-5336-3e09-9fbd1f70d54e",
+	"name": "ANN",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"id": "b01ebafb-8171-320b-8d43-7dea8884b795",
+			"name": "ANN",
+			"description": "",
+			"order": [
+				"faba2ef2-0ee3-cdab-6218-4b95cb3a9ccf",
+				"cadbbe58-0e01-0105-71a7-b7e33a1e7541"
+			],
+			"owner": "264160"
+		},
+		{
+			"id": "83069d16-9b24-d912-220e-939b748fb77b",
+			"name": "Children",
+			"description": "",
+			"order": [
+				"03ee47ad-6a32-656d-2143-8a98017f7176"
+			],
+			"owner": "264160"
+		},
+		{
+			"id": "9319881e-a637-594b-8b26-522281f858b2",
+			"name": "Toys",
+			"description": "",
+			"order": [
+				"346894f6-85a9-9d8b-515f-893b67a85b0a",
+				"80725410-ccdc-1e3a-88e0-99af3b19459d"
+			],
+			"owner": "264160"
+		}
+	],
+	"timestamp": 1461709862776,
+	"owner": "264160",
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "03ee47ad-6a32-656d-2143-8a98017f7176",
+			"headers": "Authorization: Bearer {{auth_key}}\n",
+			"url": "{{api}}/children?gender=male&age=2",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1461777171243,
+			"name": "Get Children",
+			"description": "",
+			"collectionId": "999d4e42-59a0-5336-3e09-9fbd1f70d54e",
+			"responses": []
+		},
+		{
+			"id": "346894f6-85a9-9d8b-515f-893b67a85b0a",
+			"headers": "Authorization: Bearer {{auth_key}}\n",
+			"url": "{{api}}/toys",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1461777157824,
+			"name": "Get Toys",
+			"description": "",
+			"collectionId": "999d4e42-59a0-5336-3e09-9fbd1f70d54e",
+			"responses": []
+		},
+		{
+			"id": "80725410-ccdc-1e3a-88e0-99af3b19459d",
+			"headers": "Authorization: Bearer {{auth_key}}\n",
+			"url": "{{api}}/toys/1",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1461777143059,
+			"name": "Get Toy By Id",
+			"description": "",
+			"collectionId": "999d4e42-59a0-5336-3e09-9fbd1f70d54e",
+			"responses": []
+		},
+		{
+			"id": "cadbbe58-0e01-0105-71a7-b7e33a1e7541",
+			"headers": "",
+			"url": "{{api}}/ann/test",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "gender",
+					"value": "female",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "age",
+					"value": "3",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1461777189142,
+			"name": "Test Neural Network",
+			"description": "",
+			"collectionId": "999d4e42-59a0-5336-3e09-9fbd1f70d54e",
+			"responses": []
+		},
+		{
+			"id": "faba2ef2-0ee3-cdab-6218-4b95cb3a9ccf",
+			"headers": "Authorization: Bearer {{auth_key}}\n",
+			"url": "{{api}}/ann/train",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1461777197460,
+			"name": "Train Neural Network",
+			"description": "",
+			"collectionId": "999d4e42-59a0-5336-3e09-9fbd1f70d54e",
+			"responses": []
+		}
+	]
+}

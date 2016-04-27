@@ -4,6 +4,7 @@ namespace App\Services\ANN;
 
 use Illuminate\Support\Facades\File;
 use App\Child;
+use Exception;
 
 /**
  * Class NeuralNetworkService
@@ -11,20 +12,28 @@ use App\Child;
  */
 class NeuralNetworkService {
 
+    /**
+     * Generates an answer based on provided input.
+     *
+     * @param $input
+     * @param $trainedANNFilePath
+     * @return mixed
+     * @throws \Exception
+     */
     public function ask($input, $trainedANNFilePath){
 
         if (!is_file($trainedANNFilePath))
-            die("The file xor_float.net has not been created! Please run simple_train.php to generate it");
+            throw new Exception("The training data file has not been created.");
 
         $ann = fann_create_from_file($trainedANNFilePath);
 
         if (!$ann)
-            die("ANN could not be created");
+            die("There was an issue creating ANN");
 
-        $calc_out = fann_run($ann, $input);
+        $output = fann_run($ann, $input);
 
         fann_destroy($ann);
 
-        return $calc_out;
+        return $output;
     }
 }

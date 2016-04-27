@@ -11,6 +11,7 @@ Optionally, you may install Sqlite or reconfigure the environment variables for 
 ```
 git clone https://github.com/SeanStewart37/ann.git
 cd ann
+composer install
 touch database/database.sqlite (optional)
 php artisan migrate
 php artisan db:seed

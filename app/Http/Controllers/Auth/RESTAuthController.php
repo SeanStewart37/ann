@@ -7,8 +7,17 @@ use Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Controllers\Controller;
 
+/**
+ * Class RESTAuthController
+ * @package App\Http\Controllers\Auth
+ */
 class RESTAuthController extends Controller {
 
+    /**
+     * Authenticates user return a token for subsequent API calls
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function authenticate(Request $request)
     {
         // grab credentials from the request
@@ -23,7 +32,6 @@ class RESTAuthController extends Controller {
             // something went wrong whilst attempting to encode the token
             return response()->json(['status' => 'error', 'message' => 'Unable to create token.'], 500);
         }
-
 
         return response()->json([
             'status' => 'success',

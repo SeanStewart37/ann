@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
 
+/**
+ * Class UserController
+ * @package App\Http\Controllers
+ */
 class UserController extends Controller
 {
     /**
      * Display the authorized user.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function me()
     {

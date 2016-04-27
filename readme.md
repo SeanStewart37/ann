@@ -21,6 +21,7 @@ php artisan db:seed
 There's an included Postman collection file.
 
 **Authorization Endpoint**
+
 Excluding `/authorization` and `/ann/analyze`, all endpoints requires Authorization header with Bearer token (JSON Web Token)
 ```
 POST /authorization #params: email, password

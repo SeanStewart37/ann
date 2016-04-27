@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Child;
 
-use App\Http\Requests;
+
 
 class ChildController extends Controller
 {

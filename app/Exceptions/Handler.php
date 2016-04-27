@@ -46,7 +46,15 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if( $e instanceof ModelNotFoundException){
+        if ($e instanceof Tymon\JWTAuth\Exceptions\TokenExpiredException) {
+
+            return response()->json(['status' => 'error', 'message' => 'token_expired'], $e->getStatusCode());
+
+        } else if ($e instanceof Tymon\JWTAuth\Exceptions\TokenInvalidException) {
+
+            return response()->json(['status' => 'error', 'message' => 'token_invalid'], $e->getStatusCode());
+
+        } else if( $e instanceof ModelNotFoundException){
 
             return response()->json(['status'=>'error', 'message' => ['Resource Not Found']], 404);
 

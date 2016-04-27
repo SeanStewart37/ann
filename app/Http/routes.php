@@ -10,10 +10,20 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::post('authenticate', 'Auth\RESTAuthController@authenticate');
 
-Route::group([], function () {
+Route::group(['middleware' => ['jwt.auth']], function () {
     Route::resource('children', 'ChildController');
     Route::resource('toys', 'ToyController');
     Route::post('ann/train', 'NeuralNetworkController@train');
-    Route::post('ann/test', 'NeuralNetworkController@test');
+
+});
+
+//This endpoint does not require authorization.
+Route::post('ann/test', 'NeuralNetworkController@test');
+
+Route::get('/', function(){
+
+    $users = App\User::get();
+    return response()->json($users);
 });

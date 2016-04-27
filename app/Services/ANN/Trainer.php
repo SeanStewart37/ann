@@ -10,7 +10,7 @@ class Trainer {
     public $numLayers = 3;
     public $numHiddenNeurons = 3;
     public $desiredErrorRate = 0.0001;
-    public $maxIterations = 1000000;
+    public $maxIterations = 3000000;
 
     public function train($trainingDataFilePath, $annOutputFilePath){
 

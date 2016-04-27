@@ -122,8 +122,8 @@
 		},
 		{
 			"id": "59bc56ec-cdb5-e636-9a02-277f149b1a18",
-			"headers": "",
-			"url": "{{api}}/me",
+			"headers": "Authorization: Bearer {{auth_key}}\n",
+			"url": "{{api}}/users/me",
 			"preRequestScript": null,
 			"pathVariables": {},
 			"method": "GET",
@@ -145,12 +145,11 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1461795560928,
+			"time": 1461796820090,
 			"name": "Me",
 			"description": "",
 			"collectionId": "999d4e42-59a0-5336-3e09-9fbd1f70d54e",
-			"responses": [],
-			"folder": "92b0c511-0e56-0f5b-80b0-766beb1bd572"
+			"responses": []
 		},
 		{
 			"id": "80725410-ccdc-1e3a-88e0-99af3b19459d",

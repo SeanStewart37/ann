@@ -20,10 +20,19 @@ php artisan db:seed
 ## REST Endpoints ##
 There's an included Postman collection file.
 
+**Authorization Endpoint**
+Excluding `/authorization` and `/ann/analyze`, all endpoints requires Authorization header with Bearer token (JSON Web Token)
+```
+POST /authorization #params: email, password
+```
+**Users Endpoint**
+```
+GET /users/me
+```
+
 **Children Endpoint**
 ```
 GET /children #params: gender, age
-GET /children/:id
 ```
 
 **Toys Endpoint**
@@ -35,6 +44,6 @@ GET /toys/:id
 **ANN Endpoint**
 ```
 POST /ann/train
-POST /ann/test #params: gender, age
+POST /ann/analyze #params: gender, age
 ```
 

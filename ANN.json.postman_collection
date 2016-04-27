@@ -2,7 +2,9 @@
 	"id": "999d4e42-59a0-5336-3e09-9fbd1f70d54e",
 	"name": "ANN",
 	"description": "",
-	"order": [],
+	"order": [
+		"17f9f7f2-4b6f-2145-b4d4-a3bf9f17bcfd"
+	],
 	"folders": [
 		{
 			"id": "b01ebafb-8171-320b-8d43-7dea8884b795",
@@ -30,6 +32,16 @@
 			"order": [
 				"346894f6-85a9-9d8b-515f-893b67a85b0a",
 				"80725410-ccdc-1e3a-88e0-99af3b19459d"
+			],
+			"owner": "264160",
+			"collectionId": "999d4e42-59a0-5336-3e09-9fbd1f70d54e"
+		},
+		{
+			"id": "92b0c511-0e56-0f5b-80b0-766beb1bd572",
+			"name": "Users",
+			"description": "",
+			"order": [
+				"59bc56ec-cdb5-e636-9a02-277f149b1a18"
 			],
 			"owner": "264160"
 		}
@@ -59,6 +71,37 @@
 			"responses": []
 		},
 		{
+			"id": "17f9f7f2-4b6f-2145-b4d4-a3bf9f17bcfd",
+			"headers": "",
+			"url": "{{api}}/authenticate",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "user@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "password",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1461794778367,
+			"name": "Authenticate",
+			"description": "",
+			"collectionId": "999d4e42-59a0-5336-3e09-9fbd1f70d54e",
+			"responses": []
+		},
+		{
 			"id": "346894f6-85a9-9d8b-515f-893b67a85b0a",
 			"headers": "Authorization: Bearer {{auth_key}}\n",
 			"url": "{{api}}/toys",
@@ -76,6 +119,38 @@
 			"description": "",
 			"collectionId": "999d4e42-59a0-5336-3e09-9fbd1f70d54e",
 			"responses": []
+		},
+		{
+			"id": "59bc56ec-cdb5-e636-9a02-277f149b1a18",
+			"headers": "",
+			"url": "{{api}}/me",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "email",
+					"value": "user@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "password",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1461795560928,
+			"name": "Me",
+			"description": "",
+			"collectionId": "999d4e42-59a0-5336-3e09-9fbd1f70d54e",
+			"responses": [],
+			"folder": "92b0c511-0e56-0f5b-80b0-766beb1bd572"
 		},
 		{
 			"id": "80725410-ccdc-1e3a-88e0-99af3b19459d",
@@ -99,7 +174,7 @@
 		{
 			"id": "cadbbe58-0e01-0105-71a7-b7e33a1e7541",
 			"headers": "",
-			"url": "{{api}}/ann/test",
+			"url": "{{api}}/ann/analyze",
 			"preRequestScript": null,
 			"pathVariables": {},
 			"method": "POST",
@@ -122,7 +197,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1461777189142,
+			"time": 1461795496781,
 			"name": "Test Neural Network",
 			"description": "",
 			"collectionId": "999d4e42-59a0-5336-3e09-9fbd1f70d54e",

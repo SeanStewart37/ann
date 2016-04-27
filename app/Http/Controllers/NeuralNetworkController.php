@@ -45,7 +45,7 @@ class NeuralNetworkController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function test(Request $request){
+    public function analyze(Request $request){
 
         //configure rules for validation.
         $rules = [

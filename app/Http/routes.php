@@ -13,6 +13,7 @@
 Route::post('authenticate', 'Auth\RESTAuthController@authenticate');
 
 Route::group(['middleware' => ['jwt.auth']], function () {
+    Route::get('users/me', 'UserController@me');
     Route::resource('children', 'ChildController');
     Route::resource('toys', 'ToyController');
     Route::post('ann/train', 'NeuralNetworkController@train');
@@ -20,10 +21,4 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 });
 
 //This endpoint does not require authorization.
-Route::post('ann/test', 'NeuralNetworkController@test');
-
-Route::get('/', function(){
-
-    $users = App\User::get();
-    return response()->json($users);
-});
+Route::post('ann/analyze', 'NeuralNetworkController@analyze');

@@ -22,7 +22,8 @@ There's an included Postman collection file.
 
 **Authorization Endpoint**
 
-Excluding `/authorization` and `/ann/analyze`, all endpoints require an Authorization header with a Bearer token (JSON Web Token)
+Excluding `/authorization` and `/ann/analyze`, all endpoints require an Authorization header with a Bearer token (JSON Web Token).
+There's a default user created with in the seeder file.  Email is `user@gmail.com`, password is `password`.
 ```
 POST /authorization #params: email, password
 ```

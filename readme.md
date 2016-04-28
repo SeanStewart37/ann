@@ -45,7 +45,7 @@ GET /toys/:id
 
 **ANN Endpoint**
 ```
-POST /ann/train
+POST /ann/train #params: max_iterations, layers, hidden_neurons, max_timeout
 POST /ann/analyze #params: gender, age
 ```
 

@@ -21,22 +21,39 @@ class NeuralNetworkController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function train(Request $request){
+    public function train(Request $request) {
 
-        //set max time for execution (seconds)
-        set_time_limit ( 1800 );
+        $rules = [
+            'max_timeout' => 'integer|min:30',
+            'layers' => 'integer|min:3',
+            'hidden_neurons' => 'integer|between:3,10',
+            'max_iterations' => 'integer|min:10000'
+        ];
 
-        $children = Child::get();
+        $v = Validator::make($request->all(), $rules);
 
-        $generator = new ANN\TrainingDataGenerators\ChildrenToyGenerator();
+        if($v->passes()){
+            //set max time for execution (seconds)
+            set_time_limit($request->input('max_timeout', 30));
 
-        $generator->generateFile($children, storage_path('children.data'));
+            $generator = new ANN\TrainingDataGenerators\ChildrenToyGenerator();
 
-        $trainer = new ANN\Trainer();
+            $children = Child::get();
 
-        $trainer->train(storage_path('children.data'), storage_path('children.ann'));
+            $generator->generateFile($children, storage_path('children.data'));
 
-        return response()->json(['status'=> 'success', 'data' => null], 200);
+            $trainer = new ANN\Trainer();
+
+            //configure trainer.
+            $trainer->maxIterations = $request->input('max_iterations', $trainer->maxIterations);
+            $trainer->numLayers = $request->input('layers', $trainer->numLayers);
+            $trainer->numHiddenNeurons = $request->input('hidden_neurons', $trainer->numHiddenNeurons);
+
+            //let's train.
+            $trainer->train(storage_path('children.data'), storage_path('children.ann'));
+
+            return response()->json(['status'=> 'success', 'data' => null], 200);
+        }
     }
 
     /**

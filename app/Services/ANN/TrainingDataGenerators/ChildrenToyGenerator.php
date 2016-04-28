@@ -38,7 +38,7 @@ class ChildrenToyGenerator {
             $contents .= strval($child->age) . "\n";
 
             //output will be the toys primary key to the tenth decimal place.
-            $contents .=  strval($child->toy_id/10) ."\n";
+            $contents .=  strval($child->toy_id/100) ."\n";
         }
 
         File::put($outputFilePath, $contents);

@@ -36,12 +36,15 @@ GET /users/me
 **Children Endpoint**
 ```
 GET /children #params: gender, age
+PUT /children/:id #params: toy_id
 ```
 
 **Toys Endpoint**
 ```
 GET /toys
 GET /toys/:id
+PUT /toys/:id #params: name
+POST /toys #params: name
 ```
 
 **ANN Endpoint**

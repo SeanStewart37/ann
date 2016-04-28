@@ -26,8 +26,8 @@ class NeuralNetworkController extends Controller
         $rules = [
             'max_timeout' => 'integer|min:30',
             'layers' => 'integer|min:3',
-            'hidden_neurons' => 'integer|between:3,10',
-            'max_iterations' => 'integer|min:10000'
+            'hidden_neurons' => 'integer|between:3,1000',
+            'max_iterations' => 'integer|min:100'
         ];
 
         $v = Validator::make($request->all(), $rules);
@@ -156,7 +156,7 @@ class NeuralNetworkController extends Controller
     private function getPredictedToyId($annOutput){
 
         //convert back to near representation of toy id and round decimal places.
-        $convertedToyResult = round($annOutput[0]*10, 4);
+        $convertedToyResult = round($annOutput[0]*100, 6);
 
         $toyIds = Toy::lists('id');
 

@@ -1,8 +1,9 @@
 # Artificial Neural Network Demo
 
 This is a RESTful API using Laravel 5.2.x framework and FANN (Fast Artificial Neural Network) library.
+The project uses JSON Web Tokens for stateless authorization and follows JSend Specs for all responses ( https://labs.omniti.com/labs/jsend ).
 
-The neural network trains on picking a child's favorite toy by their gender and age. Trained data is already included, however you can also retrain the neural network.
+The neural network trains on picking a child's favorite toy by their gender and age. Trained data is already included, however you can also retrain the neural network with your own configuration parameters.
 
 ## Installation ##
 This project uses Composer to install dependencies. You will also need to install FANN ( http://leenissen.dk/fann/wp/ ).

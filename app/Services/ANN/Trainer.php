@@ -32,8 +32,8 @@ class Trainer {
 
         if($ann){
 
-            fann_set_activation_function_hidden($ann, FANN_SIGMOID_SYMMETRIC);
-            fann_set_activation_function_output($ann, FANN_SIGMOID_SYMMETRIC);
+            fann_set_activation_function_hidden($ann, FANN_SIGMOID);
+            fann_set_activation_function_output($ann, FANN_SIGMOID);
 
             if (fann_train_on_file($ann, $trainingDataFilePath, $this->maxIterations, 10000, $this->desiredErrorRate)){
                 fann_save($ann, $annOutputFilePath);

@@ -8,4 +8,5 @@ class Toy extends Model
 {
     protected $hidden = ['deleted_at'];
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
+    protected $fillable = ['name'];
 }

@@ -134,7 +134,7 @@ class NeuralNetworkController extends Controller
                 'age' => $child->age,
                 'actual_toy_id' => $child->toy_id,
                 'predicted_toy_id' => $predictedToyId,
-                'ann_output' => $output,
+                'ann_output' => $output[0],
                 'correct' => ($predictedToyId == $child->toy_id) ? true : false
             ];
         }

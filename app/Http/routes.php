@@ -17,6 +17,7 @@ Route::group(['middleware' => ['jwt.auth']], function () {
     Route::resource('children', 'ChildController');
     Route::resource('toys', 'ToyController');
     Route::post('ann/train', 'NeuralNetworkController@train');
+    Route::get('ann/accuracy', 'NeuralNetworkController@accuracy');
 
 });
 

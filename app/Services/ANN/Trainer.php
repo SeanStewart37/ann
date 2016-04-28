@@ -9,14 +9,24 @@ class Trainer {
     public $numOutput = 1;
     public $numLayers = 3;
     public $numHiddenNeurons = 3;
-    public $desiredErrorRate = 0.0001;
+    public $desiredErrorRate = 0.0000001;
     public $maxIterations = 3000000;
 
-    public function train($trainingDataFilePath, $annOutputFilePath){
+    /**
+     * Overload constructor to verify FANN extension installed.
+     */
+    public function __construct() {
 
-        if(!extension_loaded('fann')) {
+        if(!extension_loaded('fann'))
             throw new Exception('FANN PHP Extension Not Loaded');
-        }
+    }
+
+    /**
+     *
+     * @param $trainingDataFilePath
+     * @param $annOutputFilePath
+     */
+    public function train($trainingDataFilePath, $annOutputFilePath){
 
         $ann = fann_create_standard($this->numLayers, $this->numInput, $this->numHiddenNeurons, $this->numOutput);
 

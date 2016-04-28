@@ -6,7 +6,7 @@ The project uses JSON Web Tokens for stateless authorization and follows [JSend 
 The neural network trains on picking a child's favorite toy by their gender and age. Trained data is already included, however you can also retrain the neural network with your own configuration parameters.
 
 ## Installation ##
-This project uses Composer to install dependencies. You will also need to install [Fast Artificial Neural Network](http://leenissen.dk/fann/wp/).
+This project uses Composer to install dependencies. You will also need to install the [Fast Artificial Neural Network](http://leenissen.dk/fann/wp/) library.
 Optionally, you may install Sqlite or reconfigure the environment variables for your database of choice. Migration and seeder files are include.
 
 ```
@@ -48,5 +48,6 @@ GET /toys/:id
 ```
 POST /ann/train #params: max_iterations, layers, hidden_neurons, max_timeout
 POST /ann/analyze #params: gender, age
+GET /ann/accuracy
 ```
 

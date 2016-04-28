@@ -12,6 +12,22 @@ use Exception;
  */
 class NeuralNetworkService {
 
+    protected $trainedANNFilePath = null;
+
+    /**
+     * @param $trainedANNFilePath
+     */
+    public function __construct($trainedANNFilePath) {
+
+        if(!extension_loaded('fann'))
+            throw new Exception('FANN PHP Extension Not Loaded');
+
+        if (!is_file($trainedANNFilePath))
+            throw new Exception("The training data file has not been created.");
+
+        $this->trainedANNFilePath = $trainedANNFilePath;
+    }
+
     /**
      * Generates an answer based on provided input.
      *
@@ -20,15 +36,12 @@ class NeuralNetworkService {
      * @return mixed
      * @throws \Exception
      */
-    public function ask($input, $trainedANNFilePath){
+    public function ask($input){
 
-        if (!is_file($trainedANNFilePath))
-            throw new Exception("The training data file has not been created.");
-
-        $ann = fann_create_from_file($trainedANNFilePath);
+        $ann = fann_create_from_file($this->trainedANNFilePath);
 
         if (!$ann)
-            die("There was an issue creating ANN");
+            throw new Exception("There was an issue creating ANN");
 
         $output = fann_run($ann, $input);
 

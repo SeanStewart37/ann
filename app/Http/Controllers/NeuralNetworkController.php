@@ -53,11 +53,12 @@ class NeuralNetworkController extends Controller
             $trainer->train(storage_path('children.data'), storage_path('children.ann'));
 
             return response()->json(['status'=> 'success', 'data' => null], 200);
-        }
+
+        } else return response()->json(['status'=> 'fail', 'data' => $v->messages()], 200);
     }
 
     /**
-     * Test neural network
+     * Analyze input to get predicted results.
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
@@ -83,11 +84,11 @@ class NeuralNetworkController extends Controller
             //Gender needs to be converted to numeric representation.
             $genderConvert = ($request->input('gender') == 'male') ? 0 : 1;
 
-            $annService = new ANN\NeuralNetworkService();
+            $annService = new ANN\NeuralNetworkService(storage_path('children.ann'));
 
             $input = [$genderConvert, intval($request->input('age'))];
 
-            $annOutput = $annService->ask($input, storage_path('children.ann'));
+            $annOutput = $annService->ask($input);
 
             $predictedToyId = $this->getPredictedToyId($annOutput);
 
@@ -102,6 +103,51 @@ class NeuralNetworkController extends Controller
     }
 
     /**
+     * Generates an accuracy report of current trained ANN.
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function accuracy(){
+
+        $children = Child::get();
+
+        $accuracyCount = 0;
+
+        $report = [];
+
+        $annService = new ANN\NeuralNetworkService(storage_path('children.ann'));
+
+        foreach($children as $child){
+
+            //Gender needs to be converted to numeric representation.
+            $genderConvert = ($child->gender == 'male') ? 0 : 1;
+
+            $input = [$genderConvert, $child->age];
+
+            $output = $annService->ask($input);
+
+            $predictedToyId = $this->getPredictedToyId($output);
+
+            $accuracyCount += ($predictedToyId == $child->toy_id) ? 1 : 0;
+
+            $report[] = [
+                'gender' => $child->gender,
+                'age' => $child->age,
+                'actual_toy_id' => $child->toy_id,
+                'predicted_toy_id' => $predictedToyId,
+                'ann_output' => $output,
+                'correct' => ($predictedToyId == $child->toy_id) ? true : false
+            ];
+        }
+
+        $accuracy = round($accuracyCount/$children->count(), 4) * 100;
+
+        return response()->json([
+            'status' => 'success',
+            'data' => ['accuracy' => $accuracy . '%', 'report' => $report]
+        ], 200);
+    }
+
+    /**
      * Get predicted toy id based on ANN output.
      *
      * @param $annOutput
@@ -110,11 +156,11 @@ class NeuralNetworkController extends Controller
     private function getPredictedToyId($annOutput){
 
         //convert back to near representation of toy id and round decimal places.
-        $convertedToyResult = round($annOutput[0]*10, 3);
+        $convertedToyResult = round($annOutput[0]*10, 4);
 
         $toyIds = Toy::lists('id');
 
-        return $this->getClosesToyId($convertedToyResult, $toyIds);
+        return $this->getClosestToyId($convertedToyResult, $toyIds);
     }
 
     /**
@@ -124,7 +170,7 @@ class NeuralNetworkController extends Controller
      * @param $arr
      * @return integer|null
      */
-    private function getClosesToyId($search, $arr) {
+    private function getClosestToyId($search, $arr) {
 
         $closest = ($arr) ? $arr[0] : null;
 
@@ -133,6 +179,6 @@ class NeuralNetworkController extends Controller
                 $closest = $item;
             }
         }
-        return $closest;
+        return intval($closest);
     }
 }

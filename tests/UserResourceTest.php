@@ -21,6 +21,7 @@ class UserResourceTest extends TestCase
             ->seeJson([
                 'status' => 'success',
             ])
+            ->seeJsonStructure(['status', 'data' => ['user']])
             ->assertResponseOk();;
     }
 }

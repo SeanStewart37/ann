@@ -4,9 +4,8 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-/*
- *
- *
+/**
+ * Class ChildResourceTest
  */
 class ChildResourceTest extends TestCase
 {

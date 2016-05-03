@@ -20,6 +20,7 @@ class UserResourceTest extends TestCase
             ->json('GET', '/users/me')
             ->seeJson([
                 'status' => 'success',
-            ]);
+            ])
+            ->assertResponseOk();;
     }
 }

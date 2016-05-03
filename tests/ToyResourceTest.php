@@ -10,6 +10,9 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class ToyResourceTest extends TestCase
 {
 
+    /**
+     * Test GET Toys endpoint
+     */
     public function testGetToys()
     {
         //Test to insure valid token
@@ -26,6 +29,9 @@ class ToyResourceTest extends TestCase
             ->assertResponseOk();
     }
 
+    /**
+     * Test GET Toys/:id endpoint
+     */
     public function testGetToy()
     {
         //Test to insure valid token
@@ -42,8 +48,9 @@ class ToyResourceTest extends TestCase
             ->assertResponseOk();
     }
 
-
-
+    /**
+     * Test PUT Toys endpoint
+     */
     public function testPutToy()
     {
         //Test to insure valid token
@@ -60,7 +67,6 @@ class ToyResourceTest extends TestCase
             ->seeJsonStructure(['status', 'data' => ['name']])
             ->assertResponseStatus(400);
 
-
         $this->withoutMiddleware()
             ->json('PUT', '/toys/2', ['name' => 'coloring book'])
             ->seeJson([
@@ -70,6 +76,9 @@ class ToyResourceTest extends TestCase
             ->assertResponseOk();
     }
 
+    /**
+     * Test POST Toys endpoint
+     */
     public function testPostToy()
     {
         //Test to insure valid token

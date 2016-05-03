@@ -51,7 +51,7 @@ class ToyController extends Controller
 
             return response()->json(['status' => 'success', 'data' => ['toy' => $toy]]);
 
-        } else return response()->json(['status' => 'fail', 'data' => $v->messages()]);
+        } else return response()->json(['status' => 'fail', 'data' => $v->messages()], 400);
     }
 
     /**

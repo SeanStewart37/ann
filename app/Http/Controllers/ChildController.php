@@ -54,6 +54,6 @@ class ChildController extends Controller
 
             return response()->json(['status' => 'success', 'data' => ['child' => $child]]);
 
-        } else return response()->json(['status' => 'fail', 'data' => $v->messages()]);
+        } else return response()->json(['status' => 'fail', 'data' => $v->messages()], 400);
     }
 }
